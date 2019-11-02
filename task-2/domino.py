@@ -10,6 +10,7 @@ class Domino:
     def init(self):
         # [4, 4]
         self.domino_source = [[0, 3], [0, 4], [1, 2], [1, 5], [2, 5], [3, 4], [3, 6], [4, 6], [5, 6]]
+        print(self.domino_source)
         self.knuckles_number = len(self.domino_source)
         for i in range(self.vertexes_number + 1):
             self.powers.append(0)
@@ -40,9 +41,6 @@ class Domino:
 
             self.powers[self.domino_source[i][0]] += 1
             self.powers[self.domino_source[i][1]] += 1
-            print("num ", i)
-            print(self.powers[self.domino_source[i][0]])
-            print(self.powers[self.domino_source[i][1]])
         odd_deg = 0
         print(self.powers)
         for j in range(self.vertexes_number):
@@ -51,6 +49,7 @@ class Domino:
         return odd_deg == 2
 
 
+# Запуск
 if __name__ == "__main__":
     domino = Domino()
     domino.init()
