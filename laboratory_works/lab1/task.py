@@ -10,7 +10,6 @@ def generate_rand_list(size):
     return [random.randint(0, 1000) for i in range(0, size)]
 
 
-# Function-decorator for other functions. Returns decorated function execution time
 def how_long(f):
     def tmp(*args, **kwargs):
         t = time.time()
@@ -35,16 +34,11 @@ def sort_bubble(data):
 @how_long
 def insertion_sort(A):
     for i in range(1, len(A)):
-        # В new_elem сохранили значение A[i]
         new_elem = A[i]
-        # Начиная с элемента A[i - 1]
         j = i - 1
-        # все элементы, которые больше new_elem
         while j >= 0 and A[j] > new_elem:
-            # сдвигаем вправо на 1
             A[j + 1] = A[j]
             j -= 1
-        # На свободное место записываем new_elem
         A[j + 1] = new_elem
 
 

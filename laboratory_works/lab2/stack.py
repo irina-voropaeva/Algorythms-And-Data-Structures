@@ -26,7 +26,7 @@ class Stack:
     def size(self):
         return len(self.items)
 
-    # O (log n)
+    # O(log n)
     def find(self, x):
         i = 0
         j = self.items.__len__() - 1
