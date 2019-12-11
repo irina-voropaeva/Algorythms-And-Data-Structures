@@ -19,14 +19,14 @@ class MyTree:
                     return val
             return None
 
-    def add(self, node_to_add):
-        if node_to_add[1] in self:
+    def add(self, pair):
+        if pair[1] in self:
             return
         if self.pair is None:
-            self.pair = node_to_add
-        self.children.append(MyTree(node_to_add))
+            self.pair = pair
+        self.children.append(MyTree(pair))
 
-    # слева направоо
+    # слева направо
     def infix_traverse(self):
         kvp = []
         for n in range(math.ceil(len(self.children) / 2)):
