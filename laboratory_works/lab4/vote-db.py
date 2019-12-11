@@ -1,10 +1,12 @@
 from random import randint
 import math
-import functools
+from bitvectorset import BitVectorSet
+from listset import ListSet
+
 
 class Congressman:
     def __init__(self, name='Ivan', price=None):
-        if price == None:
+        if price is None:
             dice = randint(1, 100)
             if dice <= 20:
                 price = math.inf
@@ -25,21 +27,19 @@ class Congressman:
         return self.price <= payment
 
 
-def generate_congressmans(count):
+def generate_congressmen(count):
     return [Congressman() for n in range(count)]
 
 
 def vote(price, data, print_data=False):
     money_amount = data['money_amount']
-    congressmans = data['congressmans']
+    congressmen = data['congressmen']
     friends = data['friends']
     neutrals = data['neutrals']
     enemies = data['enemies']
 
-    if money_amount < price * len(list(filter((lambda x: 0 < x.price < math.inf), congressmans))):
-        raise ValueError('Not enough money')
     votes = 0
-    for c in congressmans:
+    for c in congressmen:
         if c.price == 0:
             votes += 1
             if c not in friends:
@@ -57,7 +57,7 @@ def vote(price, data, print_data=False):
             else:
                 if c not in neutrals:
                     neutrals.add(c)
-    votes_percents = votes / len(congressmans) * 100
+    votes_percents = votes / len(congressmen) * 100
     if print_data:
         print('friends:', len(friends))
         print('neutrals:', len(neutrals))
@@ -70,11 +70,12 @@ def vote(price, data, print_data=False):
 def main(money_amount, price, print_data=True):
     data = {
         'money_amount': money_amount,
-        'congressmans': generate_congressmans(450),
+        'congressmen': generate_congressmen(450),
         'friends': ListSet(),
-        'neutrals': ListSet(), 'enemies': ListSet()
+        'neutrals': ListSet(),
+        'enemies': ListSet()
     }
     vote(price, data, print_data)
 
 
-main(10000000, 300)
+main(100000, 300)
